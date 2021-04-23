@@ -1,0 +1,96 @@
+import time
+maxDays30 = ['september', 'april', 'june', 'november', '9', '4', '6', '11']
+maxDays31 = ['january', 'march', 'may', 'july', 'august', 'october', '1', '3', '5', '7', '8', '10',]
+maxDays29 = ['feburary', '2']
+calenderReset = ['december', '12']
+monthFailsafe = ['9', '4', '6', '11', '1', '3', '5', '7', '8', '10', '2', '12']
+leapYear = []
+for i in range (1752, 8000):
+    if i % 4 == 0:
+        leapYear.append(i)
+
+day = int(input("Enter Day: "))
+month = int(input("Enter Month: "))
+year = int(input("Enter Year: "))
+null = 0
+
+if str(month) not in monthFailsafe:
+    print ("syntax error; invalid month")
+    time.sleep(0.5)
+    exit()
+else:
+    pass
+
+
+date = (str(day) + '/' + str(month) + '/' + str(year))
+print (date)
+
+#Failsafe array
+if str(month) in maxDays29:
+    if day > 29:
+        print ("syntax error; max day value of 29 in February")
+        #time.sleep (0.5)
+        exit()
+    else:
+        pass
+
+if str(month) in maxDays30:
+    if day > 30:
+        print ("syntax error; max day value of 30 in September, April, June, November")
+        #time.sleep (0.5)
+        exit()
+    else:
+        pass
+
+if str(month) in maxDays31:
+    if day > 31:
+        print ("syntax error; max day value of 31 in January, March, May, July, August, October, December")
+        #time.sleep (0.5)
+        exit ()
+    else:
+        pass
+
+while True:
+    #time.sleep (0.5)
+    day = (day + 1)
+    print (((str(day) + '/' + str(month) + '/' + str(year+null))))
+    if str(month) in maxDays29:
+        if day == 28:
+            if year > 1751:
+                if int(year) in leapYear:
+                    #time.sleep(0.5)
+                    print (str(day + 1) + '/' + str(month) + '/' + str(year+null)) 
+                    #time.sleep (0.5)
+                    print ((str(day-day+1) + '/' + str(month+1) + '/' + str(year+null)))
+                    day = (day-day+1)
+                    month = (month+1)
+                else:
+                    #time.sleep (0.5)
+                    print ((str(day-day+1) + '/' + str(month+1) + '/' + str(year+null)))
+                    day = (day-day+1)
+                    month = (month+1)
+            else:
+                 #time.sleep(0.5)
+                 print ((str(day-day+1) + '/' + str(month+1) + '/' + str(year+null)))
+                 day = (day-day+1)
+                 month = (month+1)
+    if str(month) in maxDays30:
+        if day == 30:
+            #time.sleep(0.5)
+            print ((str(day-day+1) + '/' + str(month+1) + '/' + str(year+null)))
+            day = (day-day+1)
+            month = (month+1)
+    if str(month) in maxDays31:
+        if day == 31:
+            #time.sleep(0.5)
+            print ((str(day-day+1) + '/' + str(month+1) + '/' + str(year+null)))
+            day = (day-day+1)
+            month = (month+1)
+    if str(month) in calenderReset:
+        if day == 31:
+            null = (null+1)
+            #time.sleep(0.5)
+            print ((str(day-day+1) + '/' + str(month-month+1) + '/' + str(year+null)))
+            day = (day-day+1)
+            month = (month - month + 1)
+            date = ((str(day-day+1) + '/' + str(month-month+1) + '/' + str(year+null)))
